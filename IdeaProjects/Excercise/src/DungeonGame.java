@@ -8,34 +8,38 @@ public class DungeonGame {
 
     public int calculateMinimumHP(int[][] dungeon) {
 
-        int ph=dungeon[0][0]<0?-dungeon[0][0]+1:0;
-        for(int i=0;i<dungeon.length;i++)
+        int m=dungeon.length;
+        int n=dungeon[0].length;
+        if(dungeon[m-1][n-1]>=0)
+            dungeon[m-1][n-1]=1;
+        else
+            dungeon[m-1][n-1]= Math.abs(dungeon[m-1][n-1])+1;
+        for(int i=m-2;i>=0;i--)
         {
-            for(int j=0;j<dungeon[i].length;j++)
-            {
-                if(i>=1 && j>=1)
-                {
-                    dungeon[i][j]=Math.max(dungeon[i-1][j]+dungeon[i][j], dungeon[i][j-1]+dungeon[i][j]);
-                    if(dungeon[i][j]<0)
-                        ph=ph+(-dungeon[i][j]);
-                }
-
-                if(i>=1 && j==0)
-                    dungeon[i][j]=dungeon[i-1][j]+dungeon[i][j];
-                if(i==0 && j>=1)
-                    dungeon[i][j]=dungeon[i][j-1]+dungeon[i][j];
-
-
-            }
-
+            dungeon[i][n-1] = dungeon[i][n-1]<=0 ? (dungeon[i+1][n-1] - dungeon[i][n-1]):1;
         }
 
-        if(dungeon.length>1 && dungeon[0].length>1 && Math.max(dungeon[0][1],dungeon[1][0])<0)
-            ph+=-(Math.max(dungeon[0][1],dungeon[1][0]));
+
+        for(int i=n-2;i>=0;i--)
+        {
+            dungeon[m-1][i] = dungeon[m-1][i]<=0 ? (dungeon[m-1][i+1] - dungeon[m-1][i]):1;
+        }
 
 
 
-        return ph==0?1:ph;
+        for(int i=m-2;i>=0;i--)
+        {
+            for(int j=n-2;j>=0;j--)
+            {
+                dungeon[i][j] = dungeon[i][j]<=0 ?  Math.min( dungeon[i+1][j]-dungeon[i][j], dungeon[i][j+1]-dungeon[i][j]) :
+                        Math.min( dungeon[i+1][j], dungeon[i][j+1]);
+
+            }
+        }
+
+
+
+        return dungeon[0][0];
 
 
 
