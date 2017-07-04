@@ -11,7 +11,7 @@ public class Excercise {
 
 
 
-    public static void main(String[] args)
+   /* public static void main(String[] args)
     {
         CountPrimes cpm=new CountPrimes();
 
@@ -28,6 +28,6 @@ public class Excercise {
 
 
     }
-
+*/
 
 }

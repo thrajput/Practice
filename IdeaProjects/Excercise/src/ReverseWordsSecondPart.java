@@ -5,9 +5,6 @@
 public class ReverseWordsSecondPart {
 
 
-
-
-
     public char[] reverse(char[] s,int left, int right)
     {
         while (left<right)
