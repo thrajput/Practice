@@ -7,7 +7,8 @@ public class Permute2 {
 
 
         public List<List<Integer>> permute(int[] nums) {
-
+                  /// TO DO
+                return  null;
 
         }
 
